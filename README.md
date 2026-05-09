@@ -32,7 +32,7 @@ pip install -r requirements.txt
 *Dashboard* analitik ini dibangun secara interaktif (menggunakan Streamlit & Plotly) untuk memberikan visibilitas penuh kepada manajemen kampus terkait kondisi demografi, status finansial, dan performa akademik mahasiswa. Dilengkapi dengan fitur *Slicer* (Filter Jurusan), manajemen dapat melihat pola spesifik *dropout* di setiap program studi.
 
 **Akses Dashboard:**
-* Link Dashboard: [Dashboard Analitik Jaya Jaya Institut]([LINK_STREAMLIT_DASHBOARD_KAMU])
+* Link Dashboard: [Dashboard Analitik Jaya Jaya Institut](https://do-dashboard.streamlit.app/)
 
 ## Menjalankan Sistem Machine Learning (Early Warning System)
 Sistem *Machine Learning* ini dibungkus menggunakan antarmuka **Streamlit**. Untuk mengoptimalkan *User Experience* dan akurasi, sistem ini dirancang menggunakan **Dual-Model Architecture**:
@@ -40,7 +40,7 @@ Sistem *Machine Learning* ini dibungkus menggunakan antarmuka **Streamlit**. Unt
 2. **Batch Check (Massal):** Menggunakan model komprehensif (*Full Features*) untuk evaluasi data massal (CSV) yang menghasilkan akurasi maksimal.
 
 **Akses Prototype EWS:**
-* Link Aplikasi: [Aplikasi EWS Jaya Jaya Institut]([LINK_STREAMLIT_EWS_KAMU])
+* Link Aplikasi: [Aplikasi EWS Jaya Jaya Institut](https://dropout-dicoding.streamlit.app/)
 
 **Cara Menjalankan Secara Lokal:**
 ```bash
