@@ -74,7 +74,7 @@ Melalui analisis mendalam terhadap distribusi dan proporsi data, faktor pendoron
 Sistem *Early Warning System* (EWS) dikembangkan untuk mengotomatisasi deteksi risiko berdasarkan pola di atas:
 
 * **Performa Model**: Algoritma **Random Forest** dengan optimasi SMOTE dan GridSearchCV berhasil mencapai **Recall sebesar 92%**. Skor ini menunjukkan model sangat handal dalam meminimalisir kesalahan deteksi (*false negative*) pada mahasiswa yang sebenarnya berisiko.
-* **Interpretasi Model (Feature Importance)**: Model memberikan bobot prioritas tertinggi pada fitur performa akademik semester kedua (`Curricular_units_2nd_sem_approved`) dan status administratif (`Tuition_fees_up_to_date`) sebagai prediktor paling berpengaruh dalam menentukan akurasi klasifikasi.
+* **Interpretasi Model (Feature Importance)**: Berdasarkan evaluasi model, fitur yang memberikan kontribusi paling signifikan dalam kinerja prediksi adalah **jumlah SKS lulus pada semester 2 dan semester 1** (`Curricular_units_2nd_sem_approved` & `Curricular_units_1st_sem_approved`), serta status pembayaran SPP (`Tuition_fees_up_to_date`). Fitur-fitur akademik dari kedua semester awal ini menjadi informasi utama yang digunakan oleh model untuk membedakan antara mahasiswa yang berisiko *dropout* dan yang berpotensi lulus dengan akurasi tinggi.
 
 ### Rekomendasi Action Items
 - **Prioritas Intervensi Finansial**: Mengingat faktor finansial adalah pendorong kritis, kampus disarankan membangun sistem otomatisasi bantuan bagi mahasiswa yang memiliki IPK baik namun terdeteksi menunggak SPP.
