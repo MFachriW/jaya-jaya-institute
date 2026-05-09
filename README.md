@@ -55,24 +55,37 @@ streamlit run app.py
 ```
 
 ## Conclusion
-Berdasarkan analisis pemodelan *Machine Learning*, dapat ditarik kesimpulan teknis dan bisnis sebagai berikut:
-1. **Variabel Penentu Utama (Semester 2 Approved)**: Jumlah mata kuliah yang berhasil diluluskan di semester kedua memiliki bobot tertinggi dalam memicu *dropout*. Kegagalan di tahap ini merupakan prediktor terkuat.
-2. **Hambatan Administratif (Tuition Fees Up to Date)**: Status pembayaran biaya kuliah merupakan faktor krusial di luar performa akademik. Kendala finansial yang menunggak sering kali memblokir akses ujian mahasiswa yang pada akhirnya memaksa mereka untuk putus kuliah.
-3. **Kualitas Prediksi**: Model *Random Forest* yang dikembangkan mampu memprediksi risiko *dropout* dengan performa klasifikasi yang sangat baik dan stabil (Recall > 90% pada evaluasi).
 
-*Catatan: Model ini sangat sensitif terhadap data performa semester kedua. Karenanya, sistem ini difungsikan sebagai instrumen monitoring berkala (Early Warning), bukan prediksi instan saat pendaftaran awal.*
+Berdasarkan hasil analisis data eksploratif (EDA) dan pengembangan model *Machine Learning*, berikut adalah kesimpulan komprehensif yang ditarik untuk Jaya Jaya Institut:
+
+### 1. Karakteristik & Faktor yang Berkaitan dengan Dropout (Berdasarkan EDA)
+Melalui analisis mendalam terhadap distribusi dan proporsi data, faktor pendorong *dropout* diklasifikasikan menjadi tiga kelompok utama:
+
+* **Faktor Kritis (Pendorong Utama)**: 
+    * **Masalah Finansial**: Mahasiswa yang menunggak biaya kuliah (*Tuition fees not up to date*), berstatus debitur, dan tidak memiliki beasiswa memiliki tingkat *dropout* sangat tinggi (80-90%).
+    * **Tingkat Kesulitan Jurusan**: Terdapat pola risiko tinggi pada prodi spesifik seperti *Informatics Engineering* dan *Biofuel Production Technologies*.
+    * **Latar Belakang Pendidikan**: Mahasiswa dengan data kualifikasi orang tua yang tidak terdefinisi (*Other/Unknown*) menunjukkan kerentanan lebih tinggi.
+* **Faktor Kontekstual & Akademik**:
+    * **Performa Awal Semester**: Terdapat perbedaan *mean* yang sangat kontras pada jumlah SKS yang lulus di semester 1 dan 2 antara kelompok Lulus dan *Dropout*.
+    * **Faktor Usia**: Distribusi usia mahasiswa *dropout* bersifat *right-skewed* (menjangkau usia 25-60 tahun), menunjukkan bahwa mahasiswa dewasa memiliki risiko keberlanjutan studi yang lebih besar.
+* **Faktor Tidak Signifikan**: Ditemukan bahwa nilai ujian masuk (*Admission grade*), nilai kualifikasi sebelumnya, serta indikator ekonomi makro (GDP, Inflasi) tidak memiliki korelasi langsung sebagai pembeda antara mahasiswa yang lulus dan *dropout*.
+
+### 2. Performa Model Prediksi & Feature Importance (Berdasarkan Machine Learning)
+Sistem *Early Warning System* (EWS) dikembangkan untuk mengotomatisasi deteksi risiko berdasarkan pola di atas:
+
+* **Performa Model**: Algoritma **Random Forest** dengan optimasi SMOTE dan GridSearchCV berhasil mencapai **Recall sebesar 92%**. Skor ini menunjukkan model sangat handal dalam meminimalisir kesalahan deteksi (*false negative*) pada mahasiswa yang sebenarnya berisiko.
+* **Interpretasi Model (Feature Importance)**: Model memberikan bobot prioritas tertinggi pada fitur performa akademik semester kedua (`Curricular_units_2nd_sem_approved`) dan status administratif (`Tuition_fees_up_to_date`) sebagai prediktor paling berpengaruh dalam menentukan akurasi klasifikasi.
 
 ### Rekomendasi Action Items
-Untuk menekan angka putus kuliah, Jaya Jaya Institut direkomendasikan mengambil tindakan operasional berikut:
-- **Implementasi Digital Early Warning System (EWS)**: Menggunakan aplikasi prediksi ini secara berkala di pertengahan dan akhir tahun studi. Mahasiswa dengan persentase risiko tinggi (>70%) dan SKS lulus di bawah standar harus segera mendapatkan notifikasi bimbingan wajib dengan dosen wali.
-- **Intervensi Akademik Terarah**: Membangun kelas remedial atau tutor sebaya khusus untuk mata kuliah di semester pertama dan kedua yang secara historis menjadi batu sandungan (*bottleneck*) bagi kelulusan.
-- **Restrukturisasi Pembayaran (Finansial)**: Mengintegrasikan EWS dengan biro keuangan. Jika model mendeteksi mahasiswa dengan IPK baik namun berisiko tinggi akibat tunggakan SPP, kampus harus proaktif menawarkan skema cicilan fleksibel, penundaan pembayaran, atau dana bantuan darurat.
+- **Prioritas Intervensi Finansial**: Mengingat faktor finansial adalah pendorong kritis, kampus disarankan membangun sistem otomatisasi bantuan bagi mahasiswa yang memiliki IPK baik namun terdeteksi menunggak SPP.
+- **Monitoring Usia & Jurusan**: Memberikan pendampingan konseling khusus bagi mahasiswa kategori dewasa dan mahasiswa di jurusan dengan tingkat kesulitan tinggi sejak awal semester pertama.
+- **Optimalisasi EWS**: Menggunakan model ini secara rutin di akhir setiap semester untuk memetakan mahasiswa "merah" yang membutuhkan intervensi akademik segera (remedial atau bimbingan dosen wali).
 
 ### Limitasi & Saran Pengembangan Lanjutan
-Meskipun model ini memiliki akurasi yang tinggi, data yang digunakan saat ini murni berbasis data **administratif dan akademik**. Padahal di dunia nyata, *dropout* sering dipicu oleh faktor di luar kampus. Untuk pengembangan selanjutnya, disarankan agar Jaya Jaya Institut mulai mendata variabel psikososial seperti:
-* Tingkat stres dan kesehatan mental mahasiswa (via survei berkala).
-* Keterlibatan mahasiswa dalam organisasi/sosial kampus.
-* Beban jam kerja eksternal (*part-time job*) mahasiswa.
+Model saat ini sangat akurat dalam membaca data administratif, namun belum menyentuh aspek psikososial. Pengembangan ke depan disarankan mencakup:
+* Integrasi data survei kesehatan mental dan tingkat stres mahasiswa.
+* Data keterlibatan organisasi dan kehidupan sosial kampus (Engagement).
+* Informasi beban kerja eksternal mahasiswa (*part-time job*).
 
 Penggabungan data administratif dengan data psikososial akan menghasilkan sistem EWS yang jauh lebih komprehensif dan suportif.
 
